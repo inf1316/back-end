@@ -1,0 +1,58 @@
+version: "3.8"
+services:
+  sqlserver:
+    container_name: qvacar-local-sql-server
+    ports:
+      - "14335:1433"
+    volumes:
+      - qvaCarLocalSql:/var/opt/mssql/data
+    networks:
+      - qvacar-local-backend
+  elastic-search:
+    container_name: qvacar-local-elasic-be
+    ports:
+      - "9200:9200"
+    volumes:
+      - qvaCarLocalElastic:/usr/share/elasticsearch/data
+    networks:
+      - qvacar-local-backend   
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.9.2
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elastic-search:9200/
+      - SERVER_NAME=localhost
+    depends_on: 
+      - elastic-search    
+    container_name: qvacar-local-elasic-fe
+    ports:
+      - "5601:5601"
+    networks:
+      - qvacar-local-backend
+  blob:
+    container_name: qvacar-local-elasic-blob
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+    networks:
+      - qvacar-local-backend
+    volumes:
+      - qvaCarLocalBlobs:/data mcr.microsoft.com/azure-storage/azurite
+  emailServer:
+    container_name: qvacar-local-elasic-email-server
+    ports:
+      - 5025:8025
+      - 10025:1025
+    networks:
+      - qvacar-local-backend  
+
+networks:
+  qvacar-local-backend:
+    driver: bridge
+volumes:
+  qvaCarLocalSql:
+    driver: local
+  qvaCarLocalElastic:
+    driver: local
+  qvaCarLocalBlobs:
+    driver: local

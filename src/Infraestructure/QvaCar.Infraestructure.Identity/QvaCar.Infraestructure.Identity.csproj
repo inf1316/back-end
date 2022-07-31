@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>Enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Duende.IdentityServer" Version="6.0.2" />
+    <PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="6.0.2" />
+    <PackageReference Include="Duende.IdentityServer.EntityFramework" Version="6.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\QvaCar.Application\QvaCar.Application.csproj" />
+    <ProjectReference Include="..\..\QvaCar.Domain\QvaCar.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

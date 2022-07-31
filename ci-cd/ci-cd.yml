@@ -1,0 +1,56 @@
+trigger: 
+    branches:
+        include:
+        - main
+pr:
+- main
+
+variables:
+- group: QvaCarInfra
+- group: QvaCarDevelopment
+- name: releaseBranchName
+  value: 'main'
+- name: poolName
+  value: '$(runPoolId)'
+- name: buildConfiguration
+  value: 'Release'
+- name: artifactName
+  value: 'QvaCar.Backend'
+- name: sqlServerPassword
+  value: $(sqlDevServerPassword)
+- name: isMainBranch
+  value: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+
+stages:
+- stage: 'Build_Stage'
+  displayName: 'Build the Api'
+  jobs:
+    - template: Templates\build-pipeline.yaml
+      parameters:
+        name: Build_Job
+        poolName: $(poolName)
+        builConfig: $(buildConfiguration)
+        artifactName:  $(artifactName)
+
+- stage: 'Release_Development_Stage'
+  condition: and(succeeded(), eq(variables.isMainBranch, 'true'))
+  displayName: 'Deploy to Development'
+  dependsOn: Build_Stage
+  jobs:
+    - template: Templates\release-pipeline.yaml
+      parameters:
+        name: Release_Job
+        poolName: $(poolName)
+        artifactName:  $(artifactName)
+        deployRegion: "westeurope"
+        sqlServerPassword: $(sqlServerPassword)
+        tfStateBlobAccountName: $(kv-tf-state-blob-account)
+        tfStateBlobContainerName: $(kv-tf-state-blob-container)
+        tfStateBlobFileName:  $(kv-tf-state-blob-file)
+        tfStateBlobSasToken: $(kv-tf-state-sas-token)
+        armServicePrincipalSubscriptionId: $(kv-arm-subscription-id)
+        armServicePrincipalClientId:  $(kv-arm-client-id)
+        armServicePrincipalClientSecret: $(kv-arm-client-secret)
+        armServicePrincipalTenantId   :  $(kv-arm-tenant-id)
+        armAzureSubscriptionServiceConnectionName: $(terraform-service-connection-name)
+        

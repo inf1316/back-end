@@ -1,0 +1,45 @@
+version: "3.8"
+services:
+  sqlserver:
+    container_name: ci-sql
+    ports:
+      - "14356:1433"
+    volumes:
+      - qvaCarSql:/var/opt/mssql/data
+    networks:
+      - backend
+  elastic-search:
+    container_name: ci-elasic-be
+    ports:
+      - "9256:9200"
+    volumes:
+      - carAds:/usr/share/elasticsearch/data
+    networks:
+      - backend      
+  blob:
+    container_name: ci-azurite
+    ports:
+      - "10056:10000"
+      - "10058:10001"
+    networks:
+      - backend
+    volumes:
+      - searchBlobs:/data mcr.microsoft.com/azure-storage/azurite
+  emailServer:
+    container_name: ci-email-server
+    ports:
+      - 5056:8025
+      - 10057:1025
+    networks:
+      - backend  
+
+networks:
+  backend:
+    driver: bridge
+volumes:
+  carAds:
+    driver: local
+  searchBlobs:
+    driver: local
+  qvaCarSql:
+    driver: local

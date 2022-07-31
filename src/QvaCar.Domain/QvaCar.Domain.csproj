@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>Enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+<ItemGroup>
+  <ProjectReference Include="..\SeedWork\QvaCar.Seedwork.Domain\QvaCar.Seedwork.Domain.csproj" />
+</ItemGroup>
+
+
+</Project>

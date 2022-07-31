@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    user: '0:0'
+    environment:
+        ACCEPT_EULA: "Y"
+        SA_PASSWORD: PasswordO1.
+
+  elastic-search:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    environment:
+      - discovery.type=single-node
+      - node.name=main-node
+      - cluster.name=docker-cluster
+
+  blob:
+    image: mcr.microsoft.com/azure-storage/azurite
+
+  emailServer:
+    image: mailhog/mailhog 
