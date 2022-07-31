@@ -30,7 +30,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CA6A4EBA-A8BA-4728-A84A-EE57332C3470}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		docker-compose.ci.override.yaml = docker-compose.ci.override.yaml
 		docker-compose.override.yaml = docker-compose.override.yaml
 		docker-compose.yaml = docker-compose.yaml
 		docs\Readme.txt = docs\Readme.txt
@@ -41,13 +40,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QvaCar.Infraestructure.BlogStorage", "src\Infraestructure\QvaCar.Infraestructure.BlogStorage\QvaCar.Infraestructure.BlogStorage.csproj", "{B15BE634-CE32-4A82-89C0-D36D19B69937}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QvaCar.Infraestructure.Identity", "src\Infraestructure\QvaCar.Infraestructure.Identity\QvaCar.Infraestructure.Identity.csproj", "{B07FC9AE-121C-418C-9D16-7CC4B3D31FBB}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cd-cd", "cd-cd", "{33987F87-7A12-4DD5-8BAC-885A9F84F2B9}"
-	ProjectSection(SolutionItems) = preProject
-		ci-cd\Templates\build-pipeline.yaml = ci-cd\Templates\build-pipeline.yaml
-		ci-cd\ci-cd.yml = ci-cd\ci-cd.yml
-		ci-cd\Templates\release-pipeline.yaml = ci-cd\Templates\release-pipeline.yaml
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
