@@ -91,7 +91,7 @@ namespace QvaCar.Infraestructure.Identity.Configuration
         {
             var id = Guid.Parse("129434e3-2647-48bf-93d3-89da83478844");
             var email = "josecdom94@gmail.com";
-            var password = "Blablacar@1";
+            var password = "jose123456";
             var firstName = "Jose Carlos";
             var lastName = "Nuñez";
             var age = 26;
